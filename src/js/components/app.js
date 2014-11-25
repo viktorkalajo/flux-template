@@ -3,18 +3,40 @@
 */
 
 var React = require('react');
-    
+var AppActions = require('../actions/app-actions');
+var AppStore = require('../stores/app-store');
+
+var _myState = function () {
+    return {
+        active: AppStore.getActive()
+    }
+}
+
 var APP = React.createClass({
     _handleClick: function () {
-        console.log('Clicked!');
+        AppActions.toggleActive();
+    },
+
+    getInitialState:function() {
+        return _myState();
+    },
+
+    componentWillMount:function(){
+      AppStore.addChangeListener(this._onChange)
+    },
+
+    _onChange: function() {
+        this.setState(_myState());
     },
 
     render: function() {
         return (
-            <h1 onClick={this._handleClick}>React app</h1>
+            <div>
+                <h1>React app active: {this.state.active}</h1>
+                <button onClick={this._handleClick}>Toggle react app</button>
+            </div>
         );
     }
-
 });
 
 module.exports = APP;
