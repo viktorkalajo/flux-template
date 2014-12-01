@@ -2,7 +2,7 @@
   "name": "flux",
   "version": "0.0.0",
   "description": "",
-  "main": "src/js/main.js",
+  "main": "src/js/index.js",
   "dependencies": {
     "envify": "^1.2.1",
     "es6-promise": "^1.0.0",
